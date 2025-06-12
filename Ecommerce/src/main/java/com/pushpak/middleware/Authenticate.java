@@ -29,18 +29,15 @@ public class Authenticate extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		
-		// Database resources
-	    Connection dbConnection = null;
+		Connection dbConnection = null;
 	    PreparedStatement authUserStatement = null;
 	    ResultSet res = null;
 	    
 	    try {
-	        // Load driver and establish connection
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 	        dbConnection = DriverManager.getConnection(
 	            "jdbc:mysql://localhost:3306/cdac", "root", "pushpak123");
 	        
-	        // Secure query with prepared statement
 	        String sql = "SELECT 1 FROM user_info WHERE uname=? AND pwd=?";
 	        authUserStatement = dbConnection.prepareStatement(sql);
 	        authUserStatement.setString(1, userName);
@@ -49,6 +46,7 @@ public class Authenticate extends HttpServlet {
 	        res = authUserStatement.executeQuery();
 	        
 	        if (res.next()) {
+	        	response.sendRedirect("category");
 	            out.println("Welcome to the online shopping site");
 	        } else {
 	            out.println("<font color='red'>Invalid username or password</font>");
@@ -61,7 +59,7 @@ public class Authenticate extends HttpServlet {
 	        out.println("<font color='red'>Database error occurred</font>");
 	        e.printStackTrace();
 	    } finally {
-	        // Proper resource cleanup
+	        // resource cleanup
 	        try {
 	            if (res != null) res.close();
 	            if (authUserStatement != null) authUserStatement.close();
@@ -70,14 +68,6 @@ public class Authenticate extends HttpServlet {
 	            e.printStackTrace();
 	        }
 	    }
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
