@@ -66,35 +66,7 @@ public class CategoryV1 extends HttpServlet {
                        category.getCategoryName() + "'/></td>");
             out.println("</tr>");
         }
-	    
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			dbConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cdac", "root", "pushpak123");
-//			getCategoryStatement = dbConnection.prepareStatement("select * from category");
-//			res = getCategoryStatement.executeQuery();
-//			
-//	        
-//	    } catch (SQLException e) {
-//	        out.println("<tr><td colspan='3' style='color:red'>Error loading categories: " 
-//	                   + e.getMessage() + "</td></tr>");
-//	        e.printStackTrace();
-//	    } catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if(res != null) {
-//					res.close();
-//				}
-//				if(getCategoryStatement != null) {
-//					getCategoryStatement.close();
-//				}
-//				if(dbConnection != null) {
-//					dbConnection.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
+	
 		out.println("</table>");
 	    out.println("</body>");
 	    out.println("</html>");
